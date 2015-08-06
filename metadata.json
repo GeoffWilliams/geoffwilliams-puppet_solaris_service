@@ -1,0 +1,14 @@
+{
+  "name": "geoffwilliams-puppet_solaris_service",
+  "version": "0.1.0",
+  "author": "Geoff Williams <geoff.williams@puppetlabs.com>",
+  "summary": "Patch the puppet solaris service with extra variables",
+  "license": "Apache-2.0",
+  "source": "https://github.com/GeoffWilliams/geoffwilliams-puppet_solaris_service",
+  "project_page": "https://github.com/GeoffWilliams/geoffwilliams-puppet_solaris_service",
+  "issues_url": "https://github.com/GeoffWilliams/geoffwilliams-puppet_solaris_service/issues",
+  "dependencies": [
+    {"name":"puppetlabs-stdlib","version_requirement":">= 1.0.0"}
+  ]
+}
+
