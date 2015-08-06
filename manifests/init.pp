@@ -38,8 +38,9 @@
 # Copyright 2015 Puppet Labs, unless otherwise noted.
 #
 class puppet_solaris_service(
-    $service_file = "/lib/svc/method/pe-puppet", 
+    $service_file    = "/lib/svc/method/pe-puppet", 
     $ld_library_path = false,
+    $puppet_service  = "pe-puppet",
 ) {
 
   if $ld_library_path {
@@ -54,6 +55,7 @@ class puppet_solaris_service(
     line   => "LD_LIBRARY_PATH=${ld_library_path};export LD_LIBRARY_PATH",
     match  => "LD_LIBRARY_PATH=",
     after  => "#!/sbin/sh",
+    notify => Service[$puppet_service],
   }
 
 }
