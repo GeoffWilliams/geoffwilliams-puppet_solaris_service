@@ -53,7 +53,7 @@ define puppet_solaris_service(
     $ld_library_path_ensure = absent
   }
   
-  file_line { "solaris_service_ld_library_path":
+  file_line { "solaris_service_${title}_ld_library_path":
     ensure => $ld_library_path_ensure,
     path   => $service_file,
     line   => "LD_LIBRARY_PATH=${ld_library_path};export LD_LIBRARY_PATH",
