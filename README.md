@@ -32,14 +32,14 @@ Currently just allows you to set `ld_library_path`.
 
 ### Setting a custom ld_library_path
 ```puppet
-class { 'puppet_solaris_service':
+puppet_solaris_service { "pe-puppet":
   ld_library_path => "/usr/local/lib",
 }
 ```
 
 ### Removing a custom ld_library_path
 ```puppet
-class { 'puppet_solaris_service': }
+puppet_solaris_service{ "pe-puppet": }
 ```
 
 ## Reference

@@ -1,4 +1,4 @@
-# Class: puppet_solaris_service
+# Defined Resource Type: puppet_solaris_service
 # ===========================
 #
 # Update the puppet solaris service file to customise variables
@@ -15,17 +15,21 @@
 # Replacement `ld_library_path` variable to use.  Pass `false` to remove this
 # directive or a string to export.
 #
+# * `restart_service`
+# Restart this service after performing a change.  Defaults to the service
+# being altered
+#
 # Examples
 # --------
 # Customise the ld_library_path
 # @example
-#    class { 'puppet_solaris_service':
+#    puppet_solaris_service { "pe-puppet":
 #      ld_library_path => "/usr/local/lib",
 #    }
 #
 # Remove a custom ld_library_path
 # @example
-#   class { 'puppet_solaris_service': }
+#   puppet_solaris_service { "pe-puppet": }
 #
 # Authors
 # -------
@@ -37,10 +41,10 @@
 #
 # Copyright 2015 Puppet Labs, unless otherwise noted.
 #
-class puppet_solaris_service(
-    $service_file    = "/lib/svc/method/pe-puppet", 
-    $ld_library_path = false,
-    $puppet_service  = "pe-puppet",
+define puppet_solaris_service(
+    $service_file     = "/lib/svc/method/${title}", 
+    $ld_library_path  = false,
+    $restart_service  = $title,
 ) {
 
   if $ld_library_path {
@@ -55,7 +59,7 @@ class puppet_solaris_service(
     line   => "LD_LIBRARY_PATH=${ld_library_path};export LD_LIBRARY_PATH",
     match  => "LD_LIBRARY_PATH=",
     after  => "#!/sbin/sh",
-    notify => Service[$puppet_service],
+    notify => Service[$restart_service],
   }
 
 }
